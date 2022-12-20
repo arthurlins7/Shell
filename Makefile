@@ -1,7 +1,7 @@
 all:
 	gcc shell.c -o shell
 
-run: 
+run:
 	./shell
 
 clean:
