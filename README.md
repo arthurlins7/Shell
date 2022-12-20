@@ -54,12 +54,9 @@
 
 *Processo pai*
 ```c
-        }else{
-        wait(NULL);
-        if(strcmp(args,"exit") == 0){
-                exit(0);
+    else if(pid > 0){
+         wait(NULL);
         }
-        fflush(stdout);
 }
 ```
    
