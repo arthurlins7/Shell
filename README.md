@@ -10,17 +10,46 @@
 
 *Processo filho*
 ```c
- if(fork() == 0){
-        while(t != NULL){
-        char *list[] = {t, "-l", NULL};
-        int status = execvp(t, list);
-                if(status != 0){
-                        t = strtok(NULL,";");
-                        system(t);
-                }else{
-                        break;
-                }
-}
+   else if(pid == 0){
+          if(strcmp(args[0], "fg") == 0){
+            num = atoi(args[1]);
+            system(list[num]);
+            break;
+          }
+        if(strcmp(word, "style parallel") == 0){
+            style = 1;
+          }
+		else if(style == 0 && !(strcmp(word, "style parallel") == 0) && !(strcmp(word, "style sequential") == 0)){
+           system(word); 
+          }
+        else if(strcmp(word, "style sequential") == 0){
+            style = 0;
+          }
+        else if(style == 1 && !(strcmp(word, "style parallel") == 0) && !(strcmp(word, "style sequential") == 0)){
+            replaceAll(word, ";", "&");
+            system(word);
+          }
+        
+        /*for(count = 0; count < argsize; count++){
+        char *list[] = {args[count], NULL };
+        pid = fork();
+        if(pid < 0){
+            printf("Não foi psível criar os filhos");
+          }
+        else if(pid > 0){
+           if(!(style == 1))wait(NULL);
+          }
+        else if(pid == 0){
+  			if(style == 0 && !(strcmp(word, "style parallel") == 0) && !(strcmp(word, "style sequential") == 0)){
+           execvp(list[0], list);
+        else if(style == 1 && !(strcmp(word, "style parallel") == 0) && !(strcmp(word, "style sequential") == 0)){
+            execvp(list[0], list);
+            }*/
+    
+					printf("\n");
+					fflush(stdout);
+          }
+        }
 ```
 
 *Processo pai*
